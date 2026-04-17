@@ -1,0 +1,1558 @@
+openapi: 3.0.3
+info:
+ title: Family Sync
+ description: API destinada para a gestão de um aplicativo de gerenciamento familia, com as Funcionalidades, Gerenciamento usuario, familia, listas, etc
+ termsOfService: http://swagger.io/terms/
+ contact:
+   email: gustavodepaulasilva299@gmail.com
+ license:
+   name: Apache 2.0
+   url: http://www.apache.org/licenses/LICENSE-2.0.html
+ version: 1.0.0
+externalDocs:
+ description: Find out more about Swagger
+ url: http://swagger.io
+servers:
+- url: http://localhost:8080
+
+
+tags:
+  - name: Usuarios
+    description: Gestão de Usuarios
+  - name: Familias
+    description: Gestão de Familias
+  - name: Eventos
+    description: Gestão de Evento
+  - name: Enderecos
+    description: Gestão de Enderecos
+  - name: Notificacoes
+    description: Gestão de Notificacões
+  - name: Informacoes
+    description: Gestão de Informacoes
+  
+paths:
+
+
+# +++++++++++++++++++++++++++
+#  Usuarios
+# +++++++++++++++++++++++++++
+
+
+ /v1/familysync/usuarios:
+   get:
+     tags:
+       - Usuarios
+     summary: Listar todos os usuarios
+     responses:
+       '200':
+         description: requisição bem sucedida
+         content:
+           application/json:
+             schema:
+               $ref: '#/components/schemas/usuarios'
+       '500':
+         description: requisição falha
+         content:
+           application/json:
+             schema:
+               $ref: '#/components/schemas/message500'
+ /v1/familysync/usuario:
+   post:
+     tags:
+       - Usuarios
+     summary: Criar novo usuario.
+     responses:
+       '201':
+         description: Objeto criado
+         content:
+           application/json:
+             schema:
+               $ref: '#/components/schemas/requisicaoSucesso'
+       '400':
+         description: Falha na rede local
+         content:
+           application/json:
+             schema:
+               $ref: '#/components/schemas/message400'
+       '415':
+         description: Falha no corpo da requisição
+         content:
+           application/json:
+             schema:
+               $ref: '#/components/schemas/message415'
+       '500':
+         description: Erro interno
+         content:
+           application/json:
+             schema:
+               $ref: '#/components/schemas/message500'
+
+ /v1/familysync/usuario/{id}:
+   parameters:
+     - $ref: '#/components/parameters/idUrl'
+   get:
+     tags:
+       - Usuarios
+     summary: Listar usuario por ID do usuario
+     responses:
+       '200':
+         description: requisição bem sucedida
+         content:
+           application/json:
+             schema:
+               $ref: '#/components/schemas/usuario'
+       '500':
+         description: requisição falha
+         content:
+           application/json:
+             schema:
+               $ref: '#/components/schemas/message500'
+   put:
+     tags:
+       - Usuarios
+     summary: Atualizar usuario
+     responses:
+       '201':
+         description: Objeto atulizado
+         content:
+           application/json:
+             schema:
+               $ref: '#/components/schemas/requisicaoSucesso'
+       '400':
+         description: Falha na rede local
+         content:
+           application/json:
+             schema:
+               $ref: '#/components/schemas/message400'
+       '415':
+         description: Falha no corpo da requisição
+         content:
+           application/json:
+             schema:
+               $ref: '#/components/schemas/message415'
+       '500':
+         description: Erro interno
+         content:
+           application/json:
+             schema:
+               $ref: '#/components/schemas/message500'
+   delete:
+     tags:
+       - Usuarios
+     summary: Deletar usuario
+     responses:
+       '201':
+         description: Objeto deletado
+         content:
+           application/json:
+             schema:
+               $ref: '#/components/schemas/requisicaoSucesso'
+       '500':
+         description: Erro interno
+         content:
+           application/json:
+             schema:
+               $ref: '#/components/schemas/message500'
+ /v1/familysync/usuarios/familia/{id}:
+   parameters:
+     - $ref: '#/components/parameters/idUrl'
+   get:
+     tags:
+       - Usuarios
+     summary: Listar usuario por familias
+     responses:
+       '200':
+         description: requisição bem sucedida
+         content:
+           application/json:
+             schema:
+               $ref: '#/components/schemas/usuariosFamilia'
+       '500':
+         description: requisição falha
+         content:
+           application/json:
+             schema:
+               $ref: '#/components/schemas/message500'
+ /v1/familysync/usuario/notificacoes/{id}:
+  parameters:
+    - $ref: '#/components/parameters/idUrl'
+  get:
+    tags:
+      - Usuarios
+    summary: Listar notificacoes de usuario
+    responses:
+      '200':
+        description: Sucesso
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/notificacoesUsuario'
+      '500':
+        description: Erro
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/message500'
+
+
+# +++++++++++++++++++++++++++
+# Familias
+# +++++++++++++++++++++++++++
+
+
+ /v1/familysync/familias:
+   get:
+     tags:
+       - Familias
+     summary: Listar todas as familias
+     responses:
+       '200':
+         description: Sucesso
+         content:
+           application/json:
+             schema:
+               $ref: '#/components/schemas/familias'
+       '500':
+         description: Erro
+         content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/message500'
+ /v1/familysync/familia:
+   post:
+     tags:
+       - Familias
+     summary: Criar nova familia
+     responses:
+       '201':
+         description: Objeto atulizado
+         content:
+           application/json:
+             schema:
+               $ref: '#/components/schemas/requisicaoSucesso'
+       '400':
+         description: Falha na rede local
+         content:
+           application/json:
+             schema:
+               $ref: '#/components/schemas/message400'
+       '415':
+         description: Falha no corpo da requisição
+         content:
+           application/json:
+             schema:
+               $ref: '#/components/schemas/message415'
+       '500':
+         description: Erro interno
+         content:
+           application/json:
+             schema:
+               $ref: '#/components/schemas/message500'
+ /v1/familysync/familia/{id}:
+   parameters:
+     - $ref: '#/components/parameters/idUrl'
+   get:
+       tags:
+       - Familias
+       summary: listar familia por ID da familia
+       responses:
+         '200':
+           description: requisição bem sucedida
+           content:
+             application/json:
+               schema:
+                 $ref: '#/components/schemas/usuariosFamiliaEndereco'
+         '500':
+           description: requisição falha
+           content:
+             application/json:
+               schema:
+                 $ref: '#/components/schemas/message500'
+   put:
+       tags:
+       - Familias
+       summary: Atualizar informações destinada familia
+       responses:
+         '201':
+           description: Objeto atulizado
+           content:
+             application/json:
+               schema:
+                 $ref: '#/components/schemas/requisicaoSucesso'
+         '400':
+           description: Falha na rede local
+           content:
+             application/json:
+               schema:
+                 $ref: '#/components/schemas/message400'
+         '415':
+           description: Falha no corpo da requisição
+           content:
+             application/json:
+               schema:
+                 $ref: '#/components/schemas/message415'
+         '500':
+           description: Erro interno
+           content:
+             application/json:
+               schema:
+                 $ref: '#/components/schemas/message500'
+   delete:
+       tags:
+       - Familias
+       summary: Deletar familia
+       responses:
+         '201':
+           description: Objeto deletado
+           content:
+             application/json:
+               schema:
+                 $ref: '#/components/schemas/requisicaoSucesso'
+         '500':
+           description: Erro interno
+           content:
+             application/json:
+               schema:
+                 $ref: '#/components/schemas/message500'
+ /v1/familysync/familias/usuario/{id}:
+   parameters:
+     - $ref: '#/components/parameters/idUrl'
+   get:
+     tags:
+       - Familias
+     summary: Listar familia por ID de usuario
+     responses:
+       '200':
+         description: Sucesso
+         content:
+            application/json:
+               schema:
+                 $ref: '#/components/schemas/usuariosFamiliaEndereco'
+       '500':
+         description: Erro
+         content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/message500'
+
+
+# +++++++++++++++++++++++++++
+# Eventos
+# +++++++++++++++++++++++++++
+ /v1/familysync/eventos:
+   get:
+     tags:
+       - Eventos
+     summary: Listar todos os Eventos
+     responses:
+       '200':
+         description: Sucesso
+         content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/eventos'
+       '500':
+         description: Erro
+         content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/message500'
+ /v1/familysync/evento:
+   post:
+     tags:
+       - Eventos
+     summary: Criar novo evento
+     responses:
+       '201':
+         description: Objeto atulizado
+         content:
+           application/json:
+             schema:
+               $ref: '#/components/schemas/requisicaoSucesso'
+       '400':
+         description: Falha na rede local
+         content:
+           application/json:
+             schema:
+               $ref: '#/components/schemas/message400'
+       '415':
+         description: Falha no corpo da requisição
+         content:
+           application/json:
+             schema:
+               $ref: '#/components/schemas/message415'
+       '500':
+         description: Erro interno
+         content:
+           application/json:
+             schema:
+               $ref: '#/components/schemas/message500'
+
+ /v1/familysync/evento/{id}:
+   parameters:
+     - $ref: '#/components/parameters/idUrl'
+   get:
+     tags:
+       - Eventos
+     summary: Listar evento por ID do evento
+     responses:
+         '200':
+           description: Sucesso
+           content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/evento'
+         '500':
+           description: Erro
+           content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/message500'
+   put:
+     tags:
+       - Eventos
+     summary: Atulizar evento
+     responses:
+       '201':
+         description: Objeto atulizado
+         content:
+           application/json:
+             schema:
+               $ref: '#/components/schemas/requisicaoSucesso'
+       '400':
+         description: Falha na rede local
+         content:
+           application/json:
+             schema:
+               $ref: '#/components/schemas/message400'
+       '415':
+         description: Falha no corpo da requisição
+         content:
+           application/json:
+             schema:
+               $ref: '#/components/schemas/message415'
+       '500':
+         description: Erro interno
+         content:
+           application/json:
+             schema:
+               $ref: '#/components/schemas/message500'
+   delete:
+     tags:
+       - Eventos
+     summary: Deletar evento
+     responses:
+       '200':
+         description: Sucesso
+         content:
+           application/json:
+             schema:
+               $ref: '#/components/schemas/requisicaoSucesso'
+       '500':
+         description: Erro
+         content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/message500'
+ /v1/familysync/eventos/familia/{id}:
+   parameters:
+     - $ref: '#/components/parameters/idUrl'
+   get:
+     tags:
+       - Eventos
+     summary: Listar eventos de familia
+     responses:
+       '200':
+         description: Sucesso
+         content: 
+          application/json:
+            schema:
+              $ref: '#/components/schemas/eventosFamilia'
+       '500':
+         description: Erro
+         content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/message500'
+
+# +++++++++++++++++++++++++++
+# Enderecos
+# +++++++++++++++++++++++++++
+
+ /v1/familysync/enderecos:
+  get:
+    tags:
+      - Enderecos
+    summary: Listar todos os enderecos
+    responses:
+      '200':
+         description: Sucesso
+         content:
+           application/json:
+             schema:
+               $ref: '#/components/schemas/enderecos'
+      '500':
+        description: Erro
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/message500'
+
+ /v1/familysync/endereco:
+  post:
+    tags:
+    - Enderecos
+    summary: Adicionar endereco
+    responses:
+       '201':
+         description: Objeto atulizado
+         content:
+           application/json:
+             schema:
+               $ref: '#/components/schemas/requisicaoSucesso'
+       '400':
+         description: Falha na rede local
+         content:
+           application/json:
+             schema:
+               $ref: '#/components/schemas/message400'
+       '415':
+         description: Falha no corpo da requisição
+         content:
+           application/json:
+             schema:
+               $ref: '#/components/schemas/message415'
+       '500':
+         description: Erro interno
+         content:
+           application/json:
+             schema:
+               $ref: '#/components/schemas/message500'
+
+ /v1/familysync/endereco/{id}:
+  parameters:
+    - $ref: '#/components/parameters/idUrl'
+  get:
+    tags:
+      - Enderecos
+    summary: Listar endereco por id 
+    responses:
+      '200':
+         description: Sucesso
+         content:
+           application/json:
+             schema:
+               $ref: '#/components/schemas/endereco'
+      '500':
+        description: Erro
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/message500'
+  put:
+    tags:
+      - Enderecos
+    summary: Atualizar endereco
+    responses:
+      '201':
+        description: Objeto atulizado
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/requisicaoSucesso'
+      '400':
+        description: Falha na rede local
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/message400'
+      '415':
+        description: Falha no corpo da requisição
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/message415'
+      '500':
+        description: Erro interno
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/message500'
+  delete:
+    tags:
+      - Enderecos
+    summary: Deletar Endereco
+    responses:
+      '201':
+        description: Objeto deletado
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/requisicaoSucesso'
+      '500':
+        description: Erro interno
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/message500'
+
+
+ /v1/familysync/endereco/famila/{id}:
+  parameters:
+    - $ref: '#/components/parameters/idUrl'
+  get:
+    tags:
+      - Enderecos
+    summary: Listar endereco por id da familia
+    responses:
+      '200':
+         description: Sucesso
+         content:
+           application/json:
+             schema:
+               $ref: '#/components/schemas/endereco'
+      '500':
+        description: Erro
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/message500'
+
+
+# +++++++++++++++++++++++++++
+# Notificações
+# +++++++++++++++++++++++++++
+ /v1/familysync/notificacoes:
+  get:
+    tags:
+      - Notificacoes
+    summary: Listar todas as notificoes
+    responses:
+      '200':
+         description: Sucesso
+         content:
+           application/json:
+             schema:
+               $ref: '#/components/schemas/notificacoes'
+      '500':
+        description: Erro
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/message500'
+ /v1/familysync/notificacao:
+  post:
+    tags:
+      - Notificacoes
+    summary: Criar nova Notificacao
+    responses:
+       '201':
+         description: Objeto atulizado
+         content:
+           application/json:
+             schema:
+               $ref: '#/components/schemas/requisicaoSucesso'
+       '400':
+         description: Falha na rede local
+         content:
+           application/json:
+             schema:
+               $ref: '#/components/schemas/message400'
+       '415':
+         description: Falha no corpo da requisição
+         content:
+           application/json:
+             schema:
+               $ref: '#/components/schemas/message415'
+       '500':
+         description: Erro interno
+         content:
+           application/json:
+             schema:
+               $ref: '#/components/schemas/message500'
+
+ /v1/familysync/notificacao/{id}:
+  parameters:
+    - $ref: '#/components/parameters/idUrl'
+  get:
+    tags:
+      - Notificacoes
+    summary: Listar notificao por id
+    responses:
+      '200':
+         description: Sucesso
+         content:
+           application/json:
+             schema:
+               $ref: '#/components/schemas/notificacao'
+      '500':
+        description: Erro
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/message500'
+  put:
+    tags:
+      - Notificacoes
+    summary: Atulizar notificao
+    responses:
+      '201':
+        description: Objeto atulizado
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/requisicaoSucesso'
+      '400':
+        description: Falha na rede local
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/message400'
+      '415':
+        description: Falha no corpo da requisição
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/message415'
+      '500':
+        description: Erro interno
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/message500'
+  delete:
+    tags:
+      - Notificacoes
+    summary: Deletar notificao
+    responses:
+      '201':
+        description: Objeto deletado
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/requisicaoSucesso'
+      '500':
+        description: Erro interno
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/message500'
+
+# +++++++++++++++++++++++++++
+# Informacoes
+# +++++++++++++++++++++++++++
+ /v1/familysync/informacoes:
+   get:
+    tags:
+      - Informacoes
+    summary: Listar todas as Informacoes
+    responses:
+      '200':
+         description: Sucesso
+         content:
+           application/json:
+             schema:
+               $ref: '#/components/schemas/informacoes'
+      '500':
+        description: Erro
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/message500'
+ /v1/familysync/informacao:
+   post:
+    tags:
+      - Informacoes
+    summary: Criar nova Informacao
+    responses:
+       '201':
+         description: Objeto atulizado
+         content:
+           application/json:
+             schema:
+               $ref: '#/components/schemas/requisicaoSucesso'
+       '400':
+         description: Falha na rede local
+         content:
+           application/json:
+             schema:
+               $ref: '#/components/schemas/message400'
+       '415':
+         description: Falha no corpo da requisição
+         content:
+           application/json:
+             schema:
+               $ref: '#/components/schemas/message415'
+       '500':
+         description: Erro interno
+         content:
+           application/json:
+             schema:
+               $ref: '#/components/schemas/message500'
+ /v1/familysync/informacao/{id}:
+   parameters:
+    - $ref: '#/components/parameters/idUrl'
+   get:
+      tags:
+        - Informacoes
+      summary: Listar Informacao por id
+      responses:
+        '200':
+          description: Sucesso
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/informacao'
+        '500':
+          description: Erro
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/message500'
+   put:
+      tags:
+        - Informacoes
+      summary: Atulizadar Informacao
+      responses:
+        '201':
+          description: Objeto atulizado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/requisicaoSucesso'
+        '400':
+          description: Falha na rede local
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/message400'
+        '415':
+          description: Falha no corpo da requisição
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/message415'
+        '500':
+          description: Erro interno
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/message500'
+   delete:
+      tags:
+        - Informacoes
+      summary: Deletar Informacao
+      responses:
+        '201':
+          description: Objeto deletado
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/requisicaoSucesso'
+        '500':
+          description: Erro interno
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/message500'
+
+
+
+# ===================
+# Componentes
+# ===================
+
+components:
+
+   # ===================
+   # Parametros
+   # ===================
+  
+ parameters:
+   idUrl:
+     name: id
+     in: path
+     description: id unico do banco de dados usado para fazer a requisição de um valor unico
+     required: true
+     schema:
+       type: integer
+       format: int64
+       example: 6
+      
+ schemas:
+
+
+   # ===================
+   # Usuarios
+   # ===================
+
+
+   usuarios:
+     type: object
+     properties:
+       Data:
+         type: string
+       CriadorAPI:
+         type: string
+       Version:
+         type: integer
+       StatusCode:
+         type: integer
+       # --------
+       # Response
+       # --------
+       Response:
+         type: array
+         items:
+           type: object
+           properties:
+             id_usuario:
+               type: integer
+             nome:
+               type: string
+             cpf:
+               type: string
+             data_nascimento:
+               type: string
+             senha:
+               type: string
+             email:
+               type: string
+             is_admin:
+               type: boolean
+             familia:
+               type: object
+               properties:
+                 id_familia:
+                   type: integer
+                 nome:
+                   type: string
+                 telefone_residencial:
+                   type: string
+   usuario:
+     type: object
+     properties:
+       Data:
+         type: string
+       CriadorAPI:
+         type: string
+       Version:
+         type: integer
+       StatusCode:
+         type: integer
+       # --------
+       # Response
+       # --------
+       Response:
+         type: object
+         properties:
+           id_usuario:
+             type: integer
+           nome:
+             type: string
+           cpf:
+             type: string
+           data_nascimento:
+             type: string
+           senha:
+             type: string
+           email:
+             type: string
+           is_admin:
+             type: boolean
+           familia:
+             type: object
+             properties:
+               id_familia:
+                 type: integer
+               nome:
+                 type: string
+               telefone_residencial:
+                 type: string
+
+
+   usuariosFamilia:
+     type: object
+     properties:
+       Data:
+         type: string
+       CriadorAPI:
+         type: string
+       Version:
+         type: integer
+       StatusCode:
+         type: integer
+       # --------
+       # Response
+       # --------
+       Response:
+         type: object
+         properties:
+           id_familia:
+             type: integer
+           nome:
+             type: string
+           telefone_residencial:
+             type: string
+           usuarios:
+             type: array
+             items:
+               type: object
+               properties:
+                 id_usuario:
+                   type: integer
+                 nome:
+                   type: string
+                 cpf:
+                   type: string
+                 data_nascimento:
+                   type: string
+                 senha:
+                   type: string
+                 email:
+                   type: string
+                 is_admin:
+                   type: boolean
+
+
+   # ===================
+   # Familias
+   # ===================
+
+
+   familias:
+     type: object
+     properties:
+       Data:
+         type: string
+       CriadorAPI:
+         type: string
+       Version:
+         type: integer
+       StatusCode:
+         type: integer
+       # --------
+       # Response
+       # --------
+       Response:
+         type: array
+         items:
+           type: object
+           properties:
+             id_familia:
+               type: integer
+             nome:
+               type: string
+             telefone_residencial:
+               type: string
+             endereco:
+               type: object
+               properties:
+                 id_endereco:
+                   type: integer
+                 cep:
+                   type: integer
+                 logradouro:
+                   type: string
+                 bairro:
+                   type: string
+                 numero:
+                   type: integer
+
+   usuariosFamiliaEndereco:
+     type: object
+     properties:
+       Data:
+         type: string
+       CriadorAPI:
+         type: string
+       Version:
+         type: integer
+       StatusCode:
+         type: integer
+       # --------
+       # Response
+       # --------
+       Response:
+         type: object
+         properties:
+           id_familia:
+             type: integer
+           nome:
+             type: string
+           telefone_residencial:
+             type: string
+           endereco:
+              type: object
+              properties:
+                id_endereco: 
+                  type: integer
+                cep:
+                  type: integer
+                estado:
+                  type: string
+                cidade:
+                  type: string
+                bairro:
+                  type: string
+                logradouro:
+                  type: string
+                complemento:
+                  type: string
+                numero:
+                  type: integer
+           usuarios:
+             type: array
+             items:
+               type: object
+               properties:
+                 id_usuario:
+                   type: integer
+                 nome:
+                   type: string
+                 cpf:
+                   type: string
+                 data_nascimento:
+                   type: string
+                 senha:
+                   type: string
+                 email:
+                   type: string
+                 is_admin:
+                   type: boolean
+
+    # ===================
+    # Eventos
+    # ===================
+
+   eventos:
+     type: object
+     properties:
+       Data:
+         type: string
+       CriadorAPI:
+         type: string
+       Version:
+         type: integer
+       StatusCode:
+         type: integer
+       # --------
+       # Response
+       # --------
+       Response:
+         type: array
+         items:
+          type: object
+          properties:
+            id_evento:
+              type: integer
+            titulo:
+              type: string
+            descrição:
+              type: string
+            data:
+              type: string
+   evento:
+    type: object
+    properties:
+      Data:
+        type: string
+      CriadorAPI:
+        type: string
+      Version:
+        type: integer
+      StatusCode:
+        type: integer
+      # --------
+      # Response
+      # --------
+      Response:
+        type: object
+        properties:
+          id_evento:
+            type: integer
+          titulo:
+            type: string
+          descrição:
+            type: string
+          data:
+            type: string
+            
+   eventosFamilia:
+    type: object
+    properties:
+      Data:
+        type: string
+      CriadorAPI:
+        type: string
+      Version:
+        type: integer
+      StatusCode:
+        type: integer
+      # --------
+      # Response
+      # --------
+      Response:
+         type: array
+         items:
+          type: object
+          properties:
+            id_evento:
+              type: integer
+            titulo:
+              type: string
+            descrição:
+              type: string
+            data:
+              type: string
+    # ===================
+    # Enderecos
+    # ===================
+   enderecos:
+      type: object
+      properties:
+       Data:
+         type: string
+       CriadorAPI:
+         type: string
+       Version:
+         type: integer
+       StatusCode:
+         type: integer
+       # --------
+       # Response
+       # --------
+       Response:
+        type: array
+        items:
+          type: object
+          properties:
+            id_endereco: 
+              type: integer
+            cep:
+              type: integer
+            estado:
+              type: string
+            cidade:
+              type: string
+            bairro:
+              type: string
+            logradouro:
+              type: string
+            complemento:
+              type: string
+            numero:
+              type: integer
+
+   endereco:
+      type: object
+      properties:
+       Data:
+         type: string
+       CriadorAPI:
+         type: string
+       Version:
+         type: integer
+       StatusCode:
+         type: integer
+       # --------
+       # Response
+       # --------
+       Response:
+        type: object
+        properties:
+            id_endereco: 
+              type: integer
+            cep:
+              type: integer
+            estado:
+              type: string
+            cidade:
+              type: string
+            bairro:
+              type: string
+            logradouro:
+              type: string
+            complemento:
+              type: string
+            numero:
+              type: integer
+
+   enderecoFamila:
+      type: object
+      properties:
+       Data:
+         type: string
+       CriadorAPI:
+         type: string
+       Version:
+         type: integer
+       StatusCode:
+         type: integer
+       # --------
+       # Response
+       # --------
+       Response:
+        type: object
+        properties:
+            id_endereco: 
+              type: integer
+            cep:
+              type: integer
+            estado:
+              type: string
+            cidade:
+              type: string
+            bairro:
+              type: string
+            logradouro:
+              type: string
+            complemento:
+              type: string
+            numero:
+              type: integer
+
+    # ===================
+    # Notificacao
+    # ===================
+   notificacoes:
+      type: object
+      properties:
+       Data:
+         type: string
+       CriadorAPI:
+         type: string
+       Version:
+         type: integer
+       StatusCode:
+         type: integer
+       # --------
+       # Response
+       # --------
+       Response:
+        type: array
+        items:
+          type: object
+          properties:
+            id_notificacao:
+              type: integer
+            titulo:
+              type: string
+            descrição:
+              type: string
+            data:
+              type: string
+   notificacao:
+      type: object
+      properties:
+       Data:
+         type: string
+       CriadorAPI:
+         type: string
+       Version:
+         type: integer
+       StatusCode:
+         type: integer
+       # --------
+       # Response
+       # --------
+       Response:
+        type: object
+        properties:
+          id_notificacao:
+            type: integer
+          titulo:
+            type: string
+          descrição:
+            type: string
+          data:
+            type: string
+   notificacoesUsuario:
+      type: object
+      properties:
+       Data:
+         type: string
+       CriadorAPI:
+         type: string
+       Version:
+         type: integer
+       StatusCode:
+         type: integer
+        # --------
+        # Response
+        # --------
+       Response:
+         type: array
+         items:
+           type: object
+           properties:
+             id_usuario:
+               type: integer
+             nome:
+               type: string
+             cpf:
+               type: string
+             data_nascimento:
+               type: string
+             senha:
+               type: string
+             email:
+               type: string
+             is_admin:
+               type: boolean
+             Notificacoes:
+               type: array
+               items:
+                type: object
+                properties:
+                  id_notificacao:
+                    type: integer
+                  titulo:
+                    type: string
+                  descrição:
+                    type: string
+                  data:
+                    type: string
+        
+    # ===================
+    # Informações
+    # ===================
+   informacoes:
+      type: object
+      properties:
+       Data:
+         type: string
+       CriadorAPI:
+         type: string
+       Version:
+         type: integer
+       StatusCode:
+         type: integer
+       # --------
+       # Response
+       # --------
+       Response:
+        type: array
+        items:
+          type: object
+          properties:
+            id_info:
+              type: integer
+            titulo:
+              type: string
+            descrição:
+              type: string
+   informacao:
+      type: object
+      properties:
+       Data:
+         type: string
+       CriadorAPI:
+         type: string
+       Version:
+         type: integer
+       StatusCode:
+         type: integer
+       # --------
+       # Response
+       # --------
+       Response:
+        type: object
+        properties:
+          id_info:
+            type: integer
+          titulo:
+            type: string
+          descrição:
+            type: string
+
+    # ===================
+    # Mensagens Padrão
+    # ===================
+
+    # ===================
+    # Mensagens de Sucesso
+    # ===================
+   requisicaoSucesso:
+     type: object
+     properties:
+       Data:
+         type: string
+       CriadorAPI:
+         type: string
+       Version:
+         type: integer
+       StatusCode:
+         type: integer
+       # --------
+       # Response
+       # --------
+       Response:
+         type: object
+         properties:
+           message:
+             type: string
+
+
+    # ===================
+    # Mensagens de Erro
+    # ===================
+
+
+   message400:
+     type: object
+     properties:
+       Data:
+         type: string
+       CriadorAPI:
+         type: string
+       Version:
+         type: integer
+       StatusCode:
+         type: integer
+       # --------
+       # Response
+       # --------
+       Response:
+         type: object
+         properties:
+           ErroMessage:
+             type: string
+   message415:
+     type: object
+     properties:
+       Data:
+         type: string
+       CriadorAPI:
+         type: string
+       Version:
+         type: integer
+       StatusCode:
+         type: integer
+       # --------
+       # Response
+       # --------
+       Response:
+         type: object
+         properties:
+           ErroMessage:
+             type: string
+   message500:
+     type: object
+     properties:
+       Data:
+         type: string
+       CriadorAPI:
+         type: string
+       Version:
+         type: integer
+       StatusCode:
+         type: integer
+       # --------
+       # Response
+       # --------
+       Response:
+         type: object
+         properties:
+           ErroMessage:
+             type: string
