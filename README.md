@@ -1,14 +1,13 @@
+![Logo](./docs/img/logo_family_sync-Photoroom%204.png)
 
-![Logo](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/th5xamgrr6se0x5ro4g6.png)
 
+# FamilySync - Repositório Oficial
 
-# Template para TCC - Repositório Oficial
+Este repositório serve como organizador de tarefas onde estarão declaradas todas as atividades e progresso do nosso projeto. Todos os colaboradores devem estar cientes e ativos no decorrer do produto.
 
-Este repositório serve como modelo (template) para organização e versionamento do Trabalho de Conclusão de Curso. Utilize esta estrutura para manter seu projeto organizado e facilitar o acompanhamento do orientador.
+## Sobre este projeto
 
-## Sobre este Template
-
-Este template foi desenvolvido para padronizar a organização dos TCCs das turmas de Desenvolvimento de Sistemas. 
+O projeto consiste no desenvolvimento de uma aplicação destinada à gestão familiar organizada. De forma que a rotina da família seja feita de maneira produtiva e eficiente, esse o sistema trabalha como auxiliador da família.
 
 ### Disciplina: Trabalho de Conclusão de Curso
 Semestre: 2026/1
@@ -52,9 +51,8 @@ Exemplo: git commit -m `Adiciona introdução com contexto do problema`
 
 ## Authors
 
-- [@Aluno1](https://www.github.com/octokatherine)
-- [@Aluno2](https://www.github.com/octokatherine)
-- [@Aluno3](https://www.github.com/octokatherine)
-- [@Aluno4](https://www.github.com/octokatherine)
-- [@Aluno5](https://www.github.com/octokatherine)
-
+- [Carlos Eduardo](https://github.com/carlosedusp05)
+- [David Lucas](https://github.com/DavidLucas1122)
+- [Gustavo De Paula](https://github.com/GustavoDePaula14)
+- [Kauan Antunes](https://github.com/KauanAntunesLima)
+- [Vitor Miguel](https://github.com/vitor-miguel-x)
